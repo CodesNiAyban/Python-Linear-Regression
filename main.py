@@ -1,15 +1,15 @@
 import pandas
 from sklearn import linear_model
 
-df = pandas.read_csv("data.csv")
+df = pandas.read_csv("Confusion.csv")
 
-X = df[['Weight', 'Volume']]
-y = df['CO2']
+X = df[['Score', 'Time Taken', 'Total Option Select']]
+y = df['Confusion']
 
 regr = linear_model.LinearRegression()
 regr.fit(X, y)
 
-#predict the CO2 emission of a car where the weight is 2300kg, and the volume is 1300cm3:
-predictedCO2 = regr.predict([[2300, 1300]])
+# Predict the confusion of the user where the Score is 6, Time taken is 306 secs and the Total Option Select is 13:
+predictedCO2 = regr.predict([[6, 306, 13]])
 
-print(predictedCO2)
+print(abs(round(float(predictedCO2))))
