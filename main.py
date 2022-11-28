@@ -3,13 +3,18 @@ from sklearn import linear_model
 
 df = pandas.read_csv("Confusion.csv")
 
-X = df[['Score', 'Time Taken', 'Total Option Select']]
-y = df['Confusion']
+X = df[['Score', 'Total Hint Views', 'Total Tip Views', 'Total Option Select', 'Attempt ']]
+y = df['Confused']
 
-regr = linear_model.LinearRegression()
-regr.fit(X, y)
+regression = linear_model.LinearRegression()
+regression.fit(X, y)
+score = 6
+totalHints = 6
+totalTips = 23
+totalOption = 13
+attempt = 1
 
 # Predict the confusion of the user where the Score is 6, Time taken is 306 secs and the Total Option Select is 13:
-predictedCO2 = regr.predict([[6, 306, 13]])
+Confusion = regression.predict([[score, totalHints, totalTips, totalOption, attempt]])
 
-print(abs(round(float(predictedCO2))))
+print(abs(round(float(Confusion))))
