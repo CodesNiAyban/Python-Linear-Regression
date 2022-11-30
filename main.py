@@ -3,18 +3,19 @@ from sklearn import linear_model
 
 df = pandas.read_csv("Confusion.csv")
 
-X = df[['Score', 'Total Hint Views', 'Total Tip Views', 'Total Option Select', 'Attempt ']]
+X = df[['Score', 'Time Taken', 'Hint Click', 'Wrong Answer', 'Extra Option Click']]
 y = df['Confused']
 
-regression = linear_model.LinearRegression()
-regression.fit(X, y)
-score = 6
-totalHints = 6
-totalTips = 23
-totalOption = 13
-attempt = 1
+logReg = linear_model.LogisticRegression()  # Logistic Regression
+logReg.fit(X.values, y.values)
+
+Score = 8
+TimeTaken = 321
+HintClick = 4
+WrongAnswer = 6
+ExtraOptionClick = 8
 
 # Predict the confusion of the user where the Score is 6, Time taken is 306 secs and the Total Option Select is 13:
-Confusion = regression.predict([[score, totalHints, totalTips, totalOption, attempt]])
+Confusion = logReg.predict([[Score, TimeTaken, HintClick, WrongAnswer, ExtraOptionClick]])
 
-print(abs(round(float(Confusion))))
+print(Confusion)
